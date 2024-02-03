@@ -58,7 +58,11 @@ class LoggerDestination(Callback, ABC):
         del hyperparameters  # unused
         pass
 
-    def log_table(self, columns: List[str], rows: List[List[Any]], name: str = 'Table') -> None:
+    def log_table(self,
+                  columns: List[str],
+                  rows: List[List[Any]],
+                  name: str = 'Table',
+                  step: Optional[int] = None) -> None:
         """Log a table.
 
         Args:
@@ -66,7 +70,7 @@ class LoggerDestination(Callback, ABC):
             rows (List[List[Any]]): 2D row-oriented array of values.
             name (str): Name of table. (Default: ``'Table'``)
         """
-        del columns, rows, name
+        del columns, rows, name, step
         pass
 
     def log_metrics(self, metrics: Dict[str, float], step: Optional[int] = None) -> None:
