@@ -384,12 +384,13 @@ class InContextLearningDataset(Dataset):
         """
         from datasets import Dataset as HFDataset  # pyright: ignore[reportGeneralTypeIssues]
         from datasets import load_dataset  # pyright: ignore[reportGeneralTypeIssues]
-        print("Inside read_dataset")
         if 'hf://' in dataset_uri:
             dataset_uri = dataset_uri.replace('hf://', '')
             if hf_loading_vars is None:
                 hf_loading_vars = {}
+            print("Before load_dataset")
             dataset = load_dataset(dataset_uri, **hf_loading_vars)
+            print("After load_dataset")
             if hf_parsing_map:
                 dataset_parsing_func = lambda example: {
                     k: ' '.join([str(example[col]) for col in v])
